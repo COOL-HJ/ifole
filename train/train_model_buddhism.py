@@ -1,15 +1,15 @@
-# 保存训练集特征列表以及名字
+# 保存佛像训练集特征列表以及名字
 import os, dlib, glob, numpy
 import numpy as np
 
 from skimage import io
 
-# 人脸关键点检测器
-predictor_path = "data/shape_predictor_68_face_landmarks.dat"
-# 人脸识别模型、提取特征值
-face_rec_model_path = "data/dlib_face_recognition_resnet_model_v1.dat"
+# 佛脸关键点检测器
+predictor_path = "../data/shape_predictor_68_face_landmarks.dat"
+# 佛脸识别模型、提取特征值
+face_rec_model_path = "../data/dlib_face_recognition_resnet_model_v1.dat"
 # 训练图像文件夹
-faces_folder_path = 'faces/buddhism'
+faces_folder_path = '../faces/buddhism'
 
 # 加载模型
 # detector = dlib.get_frontal_face_detector()
@@ -34,5 +34,5 @@ for f in glob.glob(os.path.join(faces_folder_path, "*.jpg")):
         descriptors.append(v)
 
 print('识别训练完毕！')
-np.save("data/candidate_buddhism.npy", candidate)
-np.save("data/descriptors_buddhism.npy", descriptors)
+np.save("../data/candidate_buddhism.npy", candidate)
+np.save("../data/descriptors_buddhism.npy", descriptors)

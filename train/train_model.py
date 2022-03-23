@@ -5,9 +5,9 @@ import time
 from skimage import io
 
 # 人脸关键点检测器
-predictor_path = "data/shape_predictor_68_face_landmarks.dat"
+predictor_path = "../data/shape_predictor_68_face_landmarks.dat"
 # 人脸识别模型、提取特征值
-face_rec_model_path = "data/dlib_face_recognition_resnet_model_v1.dat"
+face_rec_model_path = "../data/dlib_face_recognition_resnet_model_v1.dat"
 # 训练图像文件夹
 faces_folder_path = 'faces/lfw/*'
 
@@ -35,7 +35,7 @@ for f in glob.glob(os.path.join(faces_folder_path, "*.jpg")):
 print('识别训练完毕！')
 
 candidate = np.array(candidate)
-np.save('data/candidate.npy', candidate)
+np.save('../data/candidate.npy', candidate)
 descriptors = np.array(descriptors)
-np.save('data/descriptors.npy', descriptors)
+np.save('../data/descriptors.npy', descriptors)
 print('训练结果已保存！')

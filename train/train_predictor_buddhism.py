@@ -19,14 +19,14 @@ import dlib
 # faces dataset in the examples/faces directory.  This means you need to supply
 # the path to this faces folder as a command line argument so we will know
 # where it is.
-if len(sys.argv) != 2:
-    print(
-        "Give the path to the examples/faces directory as the argument to this "
-        "program. For example, if you are in the python_examples folder then "
-        "execute this program by running:\n"
-        "    ./train_shape_predictor.py ../examples/faces")
-    exit()
-faces_folder = sys.argv[1]
+# if len(sys.argv) != 2:
+#     print(
+#         "Give the path to the examples/faces directory as the argument to this "
+#         "program. For example, if you are in the python_examples folder then "
+#         "execute this program by running:\n"
+#         "    ./train_shape_predictor.py ../faces/buddhism")
+#     exit()
+faces_folder = "../faces/buddhism"
 
 options = dlib.shape_predictor_training_options()
 # Now make the object responsible for training the model.
@@ -51,13 +51,13 @@ options.be_verbose = True
 # images in the training dataset and also contains the positions of the face
 # parts.
 training_xml_path = os.path.join(faces_folder, "training_with_face_landmarks.xml")
-dlib.train_shape_predictor(training_xml_path, "predictor.dat", options)
+dlib.train_shape_predictor(training_xml_path, "predictor_buddhism.dat", options)
 
 # Now that we have a model we can test it.  dlib.test_shape_predictor()
 # measures the average distance between a face landmark output by the
 # shape_predictor and where it should be according to the truth data.
 print("\nTraining accuracy: {}".format(
-    dlib.test_shape_predictor(training_xml_path, "predictor.dat")))
+    dlib.test_shape_predictor(training_xml_path, "predictor_buddhism.dat")))
 # The real test is to see how well it does on data it wasn't trained on.  We
 # trained it on a very small dataset so the accuracy is not extremely high, but
 # it's still doing quite good.  Moreover, if you train it on one of the large
@@ -65,12 +65,12 @@ print("\nTraining accuracy: {}".format(
 # in the Kazemi paper.
 testing_xml_path = os.path.join(faces_folder, "testing_with_face_landmarks.xml")
 print("Testing accuracy: {}".format(
-    dlib.test_shape_predictor(testing_xml_path, "predictor.dat")))
+    dlib.test_shape_predictor(testing_xml_path, "predictor_buddhism.dat")))
 
 # Now let's use it as you would in a normal application.  First we will load it
 # from disk. We also need to load a face detector to provide the initial
 # estimate of the facial location.
-predictor = dlib.shape_predictor("predictor.dat")
+predictor = dlib.shape_predictor("predictor_buddhism.dat")
 detector = dlib.get_frontal_face_detector()
 
 # Now let's run the detector and shape_predictor over the images in the faces
