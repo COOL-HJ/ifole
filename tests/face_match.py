@@ -7,10 +7,11 @@ import time
 import dlib
 
 faces_folder = "faces/buddhism"
+# faces_folder = "examples/faces"
 
 # Now let's use the detector as you would in a normal application.  First we
 # will load it from disk.
-detector = dlib.simple_object_detector("detector_foxiang.svm")
+detector = dlib.simple_object_detector("data/detector_buddhism.svm")
 
 # We can look at the HOG filter we learned.  It should look like a face.  Neat!
 win_det = dlib.image_window()
@@ -32,8 +33,8 @@ for f in glob.glob(os.path.join(faces_folder, "*.jpg")):
     win.clear_overlay()
     win.set_image(img)
     win.add_overlay(dets)
-    dlib.hit_enter_to_continue()
-    # time.sleep(2)
+    # dlib.hit_enter_to_continue()
+    time.sleep(2)
 
 
 
@@ -56,7 +57,7 @@ for f in glob.glob(os.path.join(faces_folder, "*.jpg")):
 
 
 # # Finally, note that you don't have to use the XML based input to
-# # train_simple_object_detector().  If you have already loaded your training
+# # train_simple_object_detector().  If you have already loaded your train
 # # images and bounding boxes for the objects then you can call it as shown
 # # below.
 #
@@ -74,22 +75,22 @@ for f in glob.glob(os.path.join(faces_folder, "*.jpg")):
 # # train_simple_object_detector().
 # boxes = [boxes_img1, boxes_img2]
 #
-# # Now let's do the training.  The train_simple_object_detector() function has a
+# # Now let's do the train.  The train_simple_object_detector() function has a
 # # bunch of options, all of which come with reasonable default values.  The next
 # # few lines goes over some of these options.
 # options = dlib.simple_object_detector_training_options()
 # # Since faces are left/right symmetric we can tell the trainer to train a
-# # symmetric detector.  This helps it get the most value out of the training
+# # symmetric detector.  This helps it get the most value out of the train
 # # data.
 # options.add_left_right_image_flips = True
 # # The trainer is a kind of support vector machine and therefore has the usual
-# # SVM C parameter.  In general, a bigger C encourages it to fit the training
+# # SVM C parameter.  In general, a bigger C encourages it to fit the train
 # # data better but might lead to overfitting.  You must find the best C value
 # # empirically by checking how well the trained detector works on a test set of
 # # images you haven't trained on.  Don't just leave the value set at 5.  Try a
 # # few different C values and see what works best for your data.
 # options.C = 5
-# # Tell the code how many CPU cores your computer has for the fastest training.
+# # Tell the code how many CPU cores your computer has for the fastest train.
 # options.num_threads = 4
 # options.be_verbose = True
 #
@@ -103,7 +104,7 @@ for f in glob.glob(os.path.join(faces_folder, "*.jpg")):
 # time.sleep(2)
 #
 # # Note that you don't have to use the XML based input to
-# # test_simple_object_detector().  If you have already loaded your training
+# # test_simple_object_detector().  If you have already loaded your train
 # # images and bounding boxes for the objects then you can call it as shown
 # # below.
 # print("\nTraining accuracy: {}".format(
